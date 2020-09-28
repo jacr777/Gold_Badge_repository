@@ -1,0 +1,7 @@
+C:\Users\jacr7\Source\Repos\Komodo Claims AC\obj\Debug\Komodo Claims AC.csprojAssemblyReference.cache
+C:\Users\jacr7\Source\Repos\Komodo Claims AC\obj\Debug\Komodo Claims AC.csproj.CoreCompileInputs.cache
+C:\Users\jacr7\Source\Repos\Komodo Claims AC\bin\Debug\Komodo Claims AC.exe.config
+C:\Users\jacr7\Source\Repos\Komodo Claims AC\bin\Debug\Komodo Claims AC.exe
+C:\Users\jacr7\Source\Repos\Komodo Claims AC\bin\Debug\Komodo Claims AC.pdb
+C:\Users\jacr7\Source\Repos\Komodo Claims AC\obj\Debug\Komodo Claims AC.exe
+C:\Users\jacr7\Source\Repos\Komodo Claims AC\obj\Debug\Komodo Claims AC.pdb
