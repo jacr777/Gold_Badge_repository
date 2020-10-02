@@ -12,8 +12,6 @@ namespace Komodo_Badge
     {
         private BadgeRepository Badges = new BadgeRepository();
 
-
-
         public void Run()
         {
             BadgeMenu();
@@ -74,9 +72,7 @@ namespace Komodo_Badge
             Console.WriteLine("Enter the Badge Id:");
             string badgeIdAsString = Console.ReadLine();
             int badgeAsInt = int.Parse(badgeIdAsString);
-            newBadge.BadgeId = badgeAsInt;
-
-            
+            newBadge.BadgeId = badgeAsInt;            
 
             Console.WriteLine("Enter the Door the badge needs access:");
             string door = Console.ReadLine();
@@ -105,29 +101,74 @@ namespace Komodo_Badge
         //Edit Badge
         private void EditBadge()
         {
-
-            //Display all badges
-            ListBadges();
-            Console.WriteLine("What badge would you like to update?");
-            string badgeIdAsString = Console.ReadLine();
-            int badgeAsInt = int.Parse(badgeIdAsString);
-
-
-            bool keepEditingBadge = true;
-            while (keepEditingBadge)
+            bool keepbadgerunning = true;
+            while (keepbadgerunning)
             {
-                Console.Clear();
-                //Display update options
-                
-                
+                //Display all badges
+                ListBadges();
+                Console.WriteLine("What badge would you like to update?");
+                string badgeIdAsString = Console.ReadLine();             
+                int badgeAsInt = int.Parse(badgeIdAsString);
+                Dictionary<int, Badge> listOfBadges = Badges.GetListOfBadges();
+                if (listOfBadges.ContainsKey(badgeAsInt)){
+                    List<string> doors;
+                    int badge;
+                    int doorCount = listOfBadges[badgeAsInt].Doors.Count;
+                    doors = listOfBadges[badgeAsInt].Doors;
+                    badge = listOfBadges[badgeAsInt].BadgeId;
+                    if(doorCount == 1)
+                    {
+                        Console.WriteLine( $"Badge: {badge} has access to door {string.Format("{0}", string.Join(" & ", doors))}.");
+                    }
+                    else if(doorCount > 1)
+                    {
+                        Console.WriteLine($"Badge: {badge} has access to doors {string.Format("{0}", string.Join(" & ", doors))}.");
+                    }
+                    else
+                    {
 
-
-                Console.WriteLine("What would you like to do?\n" +
-                    "\t1. Remove a door\n" +
-                    "\t2. Add a door\n" +
-                    
+                    }
+                    Console.WriteLine("What would you like to do?\n" +
+                    "\t1. Add a door\n" +
+                    "\t2. Remove a door\n" +
                     "\t0. Exit");
+                    //Get Users Input
+                    string input = Console.ReadLine();
+
+                    //Evaluate the user's Input and act accordingly
+                    switch (input)
+                    {
+                        case "1":
+                            AddDoor(badge); //Creates a New Badge
+                            break;
+                        case "2":
+                            DeleteDoor(badge); //Edits a Badge
+                            break;
+
+                        case "0":
+                            Console.WriteLine("Goodbye!!!"); //Exit
+                            keepbadgerunning = false;
+                            break;
+                        default:
+                            Console.WriteLine("Please enter a valid number");
+                            break;
+                    }
+                    
+                    Console.WriteLine("Please press any key to continue...");
+                    Console.ReadKey();
+                    Console.Clear();
+                    keepbadgerunning = false;
+                }
+                else
+                {
+                    Console.WriteLine("Could not find that badge");
+                    Console.WriteLine("Please press any key to exit to the main menu...");
+                    Console.ReadKey();
+                    Console.Clear();
+                    keepbadgerunning = false;
+                }
             }
+
         }
         //See All Badges
         private void ListBadges()
@@ -142,7 +183,50 @@ namespace Komodo_Badge
             }
         }
 
+        //Remove a Door
+        private void DeleteDoor(int badge)
+        {
+            Console.WriteLine("What is the door you want to remove:");
+            string doorRemove = Console.ReadLine();
+            Badges.RemoveDoors(badge,doorRemove);
+            Console.WriteLine("Door was removed");
+            
+            Dictionary<int, Badge> listOfBadges = Badges.GetListOfBadges();
+            List<string> doors;
+            int newdoorcount= listOfBadges[badge].Doors.Count;
+            doors = listOfBadges[badge].Doors;
+            badge = listOfBadges[badge].BadgeId;
+            if (newdoorcount == 1)
+            {
+                Console.WriteLine($"Badge: {badge} has access to door {string.Format("{0}", string.Join(" & ", doors))}.");
+            }
+            else if (newdoorcount > 1)
+            {
+                Console.WriteLine($"Badge: {badge} has access to doors {string.Format("{0}", string.Join(" & ", doors))}.");
+            }   
+        }
+        //Add a Door
+        private void AddDoor(int badge)
+        {
+            Console.WriteLine("What is the door you want to Add:");
+            string doorAdd = Console.ReadLine();
+            Badges.AddDoors(badge, doorAdd);
+            Console.WriteLine("Door was Added");
 
-
+            Dictionary<int, Badge> listOfBadges = Badges.GetListOfBadges();
+            List<string> doors;
+            int newdoorcount = listOfBadges[badge].Doors.Count;
+            doors = listOfBadges[badge].Doors;
+            badge = listOfBadges[badge].BadgeId;
+            if (newdoorcount == 1)
+            {
+                Console.WriteLine($"Badge: {badge} has access to door {string.Format("{0}", string.Join(" & ", doors))}.");
+            }
+            else if (newdoorcount > 1)
+            {
+                Console.WriteLine($"Badge: {badge} has access to doors {string.Format("{0}", string.Join(" & ", doors))}.");
+            }
+        }
+        
     }
 }

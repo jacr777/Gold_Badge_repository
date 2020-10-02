@@ -6,22 +6,19 @@ using System.Threading.Tasks;
 
 namespace Cafe
 {
-    class MenuRepository
+    public class MenuRepository
     {
         private List<Menu> _menuList = new List<Menu>();
-
         //Add Item to Menu
         public void AddItem(Menu menu)
         {
             _menuList.Add(menu);
         }
-
         //Read Menu List
         public List<Menu> GetMenuList()
         {
             return _menuList;
         }
-
         //Delete a Menu Item
         public bool DeleteMenu(int mealNumber)
         {
@@ -41,7 +38,6 @@ namespace Cafe
                 return false;
             }
         }
-
         //Menu Helper
         public Menu GetMenuById(int mealNumber)
         {
@@ -54,6 +50,5 @@ namespace Cafe
             }
             return null;
         }
-
     }
 }

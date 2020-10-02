@@ -14,7 +14,6 @@ namespace Cafe
         public void Run()
         {
             MenuMenu();
-            //SeedMenuList();
         }
 
         private void MenuMenu()
@@ -24,20 +23,15 @@ namespace Cafe
             {
                 //Display Options to the user
                 Console.WriteLine("Select menu option:\n" +
-
                     "\t1. Create New Menu\n" +
                     "\t2. See All Menu in the Options\n" +
                     "\t3. Delete a Menu\n\n" +
                     "\t4. Exit");
-
                 //Get Users Input
                 string input = Console.ReadLine();
-
                 //Evaluate the user's Input and act accordingly
-
                 switch (input)
                 {
-
                     case "1":
                         //  Add A Menu
                         AddMenu();
@@ -58,7 +52,6 @@ namespace Cafe
                     default:
                         Console.WriteLine("Please enter a valid number");
                         break;
-
                 }
                 Console.WriteLine("Please press any key to continue...");
                 Console.ReadKey();
@@ -72,41 +65,31 @@ namespace Cafe
         private void AddMenu()
         {
             Console.Clear();
-            Menu newMenu = new Menu();
-   
+            Menu newMenu = new Menu();   
             //Menu Number Id
             Console.WriteLine("Enter the meal number;");
             string menuNumberAsString = Console.ReadLine();
             int menuNumberAsInt = int.Parse(menuNumberAsString);
             newMenu.MealNumber = menuNumberAsInt;
-
             //Menu Name
             Console.WriteLine("Enter the meal name;");
             newMenu.MealName = Console.ReadLine();
-
             //Menu Description
             Console.WriteLine("Enter the meal description;");
             newMenu.Description = Console.ReadLine();
-
             //Menu Price
             Console.WriteLine("Enter the meal Price;");
             string menuPriceAsString = Console.ReadLine();
             decimal menuPriceAsDecimal = decimal.Parse(menuPriceAsString);
             newMenu.Price = menuPriceAsDecimal;
-
             //Ingredients
             Console.WriteLine("Enter ingredients(separate by comma)");
             var ingredients = Console.ReadLine();
             List<string> listOfIngredients = ingredients.Split(new char[] {','}).ToList();
-
-            newMenu.Ingredients = listOfIngredients;
-
-            
+            newMenu.Ingredients = listOfIngredients;            
             _menurepo.AddItem(newMenu);
-
-
         }
-        //Read Teams
+        //Read Menus
         private void DisplayAllMenus()
         {
             Console.Clear();
@@ -123,12 +106,11 @@ namespace Cafe
                 Console.WriteLine($"\t-{item}");
             }
         }
-        //Delete a Team
+        //Delete a Menu
         private void DeleteMenu()
         {
             DisplayAllMenus();
-
-            //Get the Team to delete
+            //Get the Menu to delete
             Console.WriteLine("\n Enter the Menu Number you want to delete:");
             string menuNumberAsString = Console.ReadLine();
             int menuNumberAsInt = int.Parse(menuNumberAsString);
@@ -144,12 +126,6 @@ namespace Cafe
             {
                 Console.WriteLine("The Menu Item was not found");
             }
-        }
-        //private void SeedMenuList()
-        //{
-        //    var fishingredients = new List<>
-        //    Menu Fish = new Menu(1, "Fish and Chips", "Fried fish served with fried chips", 8.99m,[Fish Chips]);
-        //}
-
+        }        
     }
 }

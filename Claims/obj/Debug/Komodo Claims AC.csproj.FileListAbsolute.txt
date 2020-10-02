@@ -5,3 +5,10 @@ C:\Users\jacr7\Source\Repos\Komodo Claims AC\bin\Debug\Komodo Claims AC.exe
 C:\Users\jacr7\Source\Repos\Komodo Claims AC\bin\Debug\Komodo Claims AC.pdb
 C:\Users\jacr7\Source\Repos\Komodo Claims AC\obj\Debug\Komodo Claims AC.exe
 C:\Users\jacr7\Source\Repos\Komodo Claims AC\obj\Debug\Komodo Claims AC.pdb
+C:\ElevenFiftyProjects\Cafe\Claims\bin\Debug\Komodo Claims AC.exe.config
+C:\ElevenFiftyProjects\Cafe\Claims\bin\Debug\Komodo Claims AC.exe
+C:\ElevenFiftyProjects\Cafe\Claims\bin\Debug\Komodo Claims AC.pdb
+C:\ElevenFiftyProjects\Cafe\Claims\obj\Debug\Komodo Claims AC.csprojAssemblyReference.cache
+C:\ElevenFiftyProjects\Cafe\Claims\obj\Debug\Komodo Claims AC.csproj.CoreCompileInputs.cache
+C:\ElevenFiftyProjects\Cafe\Claims\obj\Debug\Komodo Claims AC.exe
+C:\ElevenFiftyProjects\Cafe\Claims\obj\Debug\Komodo Claims AC.pdb

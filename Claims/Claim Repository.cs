@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Komodo_Claims_AC
 {
-    class Claim_Repository
+    public class Claim_Repository
     {
 
         private List<Claim> _listOfClaims = new List<Claim>();

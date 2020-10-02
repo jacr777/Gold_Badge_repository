@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Komodo_Badge
 {
-    class BadgeRepository
+    public class BadgeRepository
     {
-        Dictionary<int, Badge> Badges = new Dictionary<int, Badge>{}; //Instantiate Dictionary
+        Dictionary<int, Badge> Badges = new Dictionary<int, Badge>{}; //Instantiate Dictionary)
 
         //Create Badges
         public void AddBadge(int badgeId,Badge badge)
@@ -22,37 +22,18 @@ namespace Komodo_Badge
             return Badges;
         }
         //Add Doors
-        public void AddDoors(int BadgeId,Badge badge)
+        public void AddDoors(int badgeId, string door)
         {
+            //BadgeRepo(all badges)->Badge(single badge based on Id)->Doors(internal list of strings)
+            Badges[badgeId].Doors.Add(door);            
 
         }
 
         //Delete Doors
-        //public bool RemoveDoors(int BadgeId, Badge badge)
-        //{
-        //    Badge content = GetBadgeById(BadgeId);
-        //    if (content == null)
-        //    {
-        //        return false;
-        //    }
-        //    int intialCount = Badges.Count;
-        //    Badges.Remove(content,badge); /////////////////HELP
-        //    if(intialCount > Badges.Count)
-        //    {
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-
-
-        //}
-
-        //Badge Helper
-        public Badge GetBadgeById(int badgeId)
+        public void RemoveDoors(int badgeId, string door)
         {
-            return Badges[badgeId];
+            Badges[badgeId].Doors.Remove(door);
+
         }
     }
 }

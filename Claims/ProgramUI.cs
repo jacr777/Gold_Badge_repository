@@ -7,13 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
 using System.Windows;
+using static Komodo_Claims_AC.Claim;
+
 
 namespace Komodo_Claims_AC
 {
     class ProgramUI
     {
         private Claim_Repository _claimrepo = new Claim_Repository();
-
         public void Run()
         {
             ClaimMenu();
@@ -24,11 +25,8 @@ namespace Komodo_Claims_AC
             bool keepClaimRunning = true;
             while (keepClaimRunning)
             {
-
-
                 //Display Options to the user
                 Console.WriteLine("Select menu option:\n" +
-
                     "\t1. Add a new claim\n" +
                     "\t2. See all claims\n" +
                     "\t3. Update a claim\n" +
@@ -36,7 +34,6 @@ namespace Komodo_Claims_AC
                     "\t0. Exit");
                 //Get Users Input
                 string input = Console.ReadLine();
-
                 //Evaluate the user's Input and act accordingly
                 switch (input)
                 {
@@ -61,26 +58,21 @@ namespace Komodo_Claims_AC
                         break;
                 }
                 Console.WriteLine("Please press any key to continue...");
-
                 Console.ReadKey();
                 Console.Clear();
-
             }
 
         }
         //1 Create a Claim
-        private void CreateClaim()
-        {
+        private void CreateClaim()        {
 
             Console.Clear();
             Claim newClaim = new Claim();
-
             //Claim Number Id
             Console.WriteLine("Enter the claim Id;");
             string claimIdAsString = Console.ReadLine();
             int claimIdAsInt = int.Parse(claimIdAsString);
             newClaim.ClaimId = claimIdAsInt;
-
             //Claim Type
             Console.WriteLine("Enter the claim Type;\n" +
                 "\t1. Car\n" +
@@ -88,19 +80,16 @@ namespace Komodo_Claims_AC
                 "\t3. Theft");
             string claimTypeAsString = Console.ReadLine();
             int claimTypeAsInt = int.Parse(claimTypeAsString);
-
+            newClaim.ClaimType = (TypeOfClaim)claimTypeAsInt;
             //Claim Description
             Console.WriteLine("Enter Description;");
             string description = Console.ReadLine();
             newClaim.Description = description;
-
-
             //Claim Amount
             Console.WriteLine("Enter the claim Amount;");
             string claimAmountAsString = Console.ReadLine();
             decimal claimAmountAsDecimal = decimal.Parse(claimAmountAsString);
             newClaim.ClaimAmount = claimAmountAsDecimal;
-
             //Date Of the Incident
             Console.WriteLine("Enter the date of the incident;\n" +
                 "\tDay(DD):");
@@ -111,7 +100,6 @@ namespace Komodo_Claims_AC
             var yearI = Convert.ToInt32(Console.ReadLine());
             DateTime dateI = new DateTime(yearI, monthI, dayI,0,0,0);
             newClaim.DateOfIncident = dateI;
-
             //Date Of the Claim
             Console.WriteLine("Enter the date of the claim;\n" +
                 "\tDay(DD):");
@@ -122,10 +110,8 @@ namespace Komodo_Claims_AC
             var yearC = Convert.ToInt32(Console.ReadLine());
             DateTime dateC = new DateTime(yearC, monthC, dayC,0,0,0);                     
             newClaim.DateOfClaim = dateC;
-
             //Is Claim Valid
-            int daysBetween = (int)(dateC - dateI).TotalDays;
-         
+            int daysBetween = (int)(dateC - dateI).TotalDays;         
             if (daysBetween < 30)
             {
                 newClaim.IsValid = true;
@@ -137,7 +123,6 @@ namespace Komodo_Claims_AC
                 newClaim.IsValid = false;
                 Console.WriteLine("\tClaim is Invalid\n" +
                         "\tPress any Key to continue");
-
             }
             _claimrepo.AddClaim(newClaim);
         }
@@ -146,7 +131,6 @@ namespace Komodo_Claims_AC
         {
             Console.Clear();
             List<Claim> claimList = _claimrepo.GetClaims();
-
             Console.WriteLine("{0,-15} {1,-15} {2,-30} {3,-10} {4,-20} {5,-20} {6,-15}", "Claim ID","Claim Type","Description","Amount $","Date of Incident","Date of Claim","Is Valid?");
             foreach (Claim id in claimList)
             {
@@ -164,16 +148,13 @@ namespace Komodo_Claims_AC
             //Get that title
             string oldclaimIdAsString = Console.ReadLine();
             int oldId = int.Parse(oldclaimIdAsString);
-
             //We build a new object
             Claim newClaim = new Claim();
-
             //Claim Number Id
             Console.WriteLine("Enter the claim Id;");
             string claimIdAsString = Console.ReadLine();
             int claimIdAsInt = int.Parse(claimIdAsString);
             newClaim.ClaimId = claimIdAsInt;
-
             //Claim Type
             Console.WriteLine("Enter the claim Type;\n" +
                 "\t1. Car\n" +
@@ -181,18 +162,16 @@ namespace Komodo_Claims_AC
                 "\t3. Theft");
             string claimTypeAsString = Console.ReadLine();
             int claimTypeAsInt = int.Parse(claimTypeAsString);
-
+            newClaim.ClaimType = (TypeOfClaim)claimTypeAsInt;
             //Claim Description
             Console.WriteLine("Enter Description;");
             string description = Console.ReadLine();
             newClaim.Description = description;
-
             //Claim Amount
             Console.WriteLine("Enter the claim Amount;");
             string claimAmountAsString = Console.ReadLine();
             decimal claimAmountAsDecimal = decimal.Parse(claimAmountAsString);
             newClaim.ClaimAmount = claimAmountAsDecimal;
-
             //Date Of the Incident
             Console.WriteLine("Enter the date of the incident;\n" +
                 "\tDay(DD):");
@@ -203,7 +182,6 @@ namespace Komodo_Claims_AC
             var yearI = Convert.ToInt32(Console.ReadLine());
             DateTime dateI = new DateTime(yearI, monthI, dayI, 0, 0, 0);
             newClaim.DateOfIncident = dateI;
-
             //Date Of the Claim
             Console.WriteLine("Enter the date of the claim;\n" +
                 "\tDay(DD):");
@@ -214,10 +192,8 @@ namespace Komodo_Claims_AC
             var yearC = Convert.ToInt32(Console.ReadLine());
             DateTime dateC = new DateTime(yearC, monthC, dayC, 0, 0, 0);
             newClaim.DateOfClaim = dateC;
-
             //Is Claim Valid
             int daysBetween = (int)(dateC - dateI).TotalDays;
-
             if (daysBetween < 30)
             {
                 newClaim.IsValid = true;
@@ -229,9 +205,7 @@ namespace Komodo_Claims_AC
                 newClaim.IsValid = false;
                 Console.WriteLine("\tClaim is Invalid\n" +
                         "\tPress any Key to continue");
-
-            }
-    
+            }    
             //Verify the update worked
             bool wasUpdated = _claimrepo.UpdateClaim(oldId, newClaim);
             if (wasUpdated)
@@ -245,10 +219,9 @@ namespace Komodo_Claims_AC
             }
         }
             //4 Delete a claim
-            public void DeleteClaim()
+        public void DeleteClaim() 
         {
             ReadAllClaims();
-
             //Get the Team to delete
             Console.WriteLine("\n Enter the Claim ID you want to delete:");
             string claimIdAsString = Console.ReadLine();
@@ -265,9 +238,6 @@ namespace Komodo_Claims_AC
             {
                 Console.WriteLine("The claim was not found");
             }
-
-        }
-        //Seed Methond
-       
+        }   
     }
 }
